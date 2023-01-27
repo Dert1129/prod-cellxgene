@@ -8,3 +8,4 @@ Repo for using cellxgene for a production environment
 *   Run docker pull mithoopolly/cellxgene:prod_v0.0.3
 *   Run docker build -t image/name:tag
 *   Run docker-compose up -d
+*   Vist server address or localhost to view cellxgene instance
