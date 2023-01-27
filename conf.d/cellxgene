@@ -30,5 +30,5 @@ server {
 server{
     listen 80;
     server_name localhost;
-    return 301 https://$host$request_uri;
+    return 301 https://$host$request_uri; #if using amazon cognito put the url in place of $host. Leave $request_uri at the end of the url
 }
