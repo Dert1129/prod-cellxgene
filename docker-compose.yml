@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+  cellxgene:
+    image: ${CELLXGENE_IMAGE}
+    container_name: cellxgene
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./conf.d:/etc/nginx/sites-available/
+      - ../certs/:/certs
+    env_file:
+      - .env

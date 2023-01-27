@@ -1,0 +1,34 @@
+server {
+    # listen 80;
+    server_name localhost;
+    listen 443;
+    ssl on;
+    ssl_certificate /certs/ssl.crt; #put the absolute path of your SSL certs 
+    ssl_certificate_key /certs/ssl.key;
+    # client_max_body_size 0;
+
+    root /var/www/html;
+
+    # Add index.php to the list if you are using PHP
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        include         uwsgi_params;
+        uwsgi_pass      unix:/cellxgene.sock;
+        # proxy_pass http://127.0.0.1:5000/;
+#        proxy_http_version                    1.1;
+#        proxy_set_header Upgrade              $http_upgrade;
+#        proxy_set_header Connection           "upgrade";
+       proxy_read_timeout                    600s;
+        proxy_redirect                        off;
+        proxy_set_header Host                 $http_host;
+        proxy_set_header X-Real-IP            $remote_addr;
+        proxy_set_header X-Forwarded-For      $proxy_add_x_forwarded_for;
+#        proxy_set_header X-Forwarded-Protocol $scheme;
+    }
+}
+server{
+    listen 80;
+    server_name localhost;
+    return 301 https://$host$request_uri;
+}
