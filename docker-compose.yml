@@ -9,5 +9,6 @@ services:
     volumes:
       - ./conf.d:/etc/nginx/sites-available/
       - ../certs/:/certs
+      - ./data/:/test-files/
     env_file:
       - .env
